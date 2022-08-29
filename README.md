@@ -7,6 +7,6 @@ Contains the code from "Paralogy or reality? Exploring gene assembly errors in a
 ## Pipeline
 
 ### Quality Assessment of Raw Reads
-Raw reads are first assessed using FASTQC 
+Raw reads are first assessed using [FASTQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) 
 
 
