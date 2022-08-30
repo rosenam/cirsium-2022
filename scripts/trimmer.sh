@@ -17,5 +17,5 @@ fwdpair=`echo ${fileR1} | sed 's/R1.fastq.gz/fwd_paired.fastq/'`
 revpair=`echo ${fileR2} | sed 's/R2.fastq.gz/rev_paired.fastq/'`
 fwdunp=`echo ${fileR1} | sed 's/R1.fastq.gz/fwd_unpaired.fastq/'`
 revunp=`echo ${fileR2} | sed 's/R2.fastq.gz/rev_unpaired.fastq/'`
-java -jar /projects/rosenam@colostate.edu/software/Trimmomatic-0.39/trimmomatic-0.39.jar PE $fileR1 $fileR2 $fwdpair $fwdunp $revpair $revunp ILLUMINACLIP:/projects/rosenam@colostate.edu/cirsium/01_input/TruSeq3-PE-2.fa:2:30:10 LEADING:20 TRAILING:20 SLIDINGWINDOW:5:20 MINLEN:36
+java -jar trimmomatic-0.39.jar PE $fileR1 $fileR2 $fwdpair $fwdunp $revpair $revunp ILLUMINACLIP:/projects/cirsium/01_input/TruSeq3-PE-2.fa:2:30:10 LEADING:20 TRAILING:20 SLIDINGWINDOW:5:20 MINLEN:36
 done
