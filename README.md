@@ -73,9 +73,9 @@ Step 2: Use trimAl v.1.4 to
 * discard entire sequences when less than 50% of their nucleotide characters have an overlap score of 0.5
 
 Example code:
+
 ```
 trimal -compareset fileset.txt -out gene.trim_al.fasta -ct 0.5 -gt 0.1 -st 0.001 -resoverlap 0.5 -seqoverlap 0.5
-
 ```
 --------
 #### Removal of divergent regions
@@ -83,10 +83,21 @@ trimal -compareset fileset.txt -out gene.trim_al.fasta -ct 0.5 -gt 0.1 -st 0.001
 divergent outliers in comparison to the rest of the sequences in the alignment.
 
 Example code:
+
 ```
 correction_multi.jl gene.trim_al.fasta > gene_taper.fasta -c 1 -m N
 ```
 --------
 #### Paralog removal
-Paralogs have the potential to confound phylogenetic analyses, so to be cautious, all genes flagged by HybPiper as containing potential paralogs are removed from the dataset.
+Paralogs have the potential to confound downstream analyses, so to be cautious, all genes flagged by HybPiper as containing potential paralogs were removed from the dataset.
 
+Example code:
+
+```
+while read paralog
+do
+rm $paralog*
+done < /projects/cirsium/01_input/namelists/paralog_list.txt
+```
+
+### Phylogenetic Analysis
