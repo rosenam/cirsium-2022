@@ -46,6 +46,7 @@ If all trimmed reads are placed in a single directory, this script will perform 
 ### Sequence alignment and quality control
 #### Alignment
 Sequences were aligned using [MAFFT v.7.48](https://mafft.cbrc.jp/alignment/software/) and the options: --preservecase --localpair --maxiterate 1000 
+
 Example code:
 
 ```
@@ -54,3 +55,28 @@ mafft --preservecase --localpair --maxiterate 1000 $gene > $gene.aligned.fasta
 
 --------
 #### Alignment trimming
+Step 1: Perform heads-or-tails alignment
+Step 2: Use trimAl v.1.4 to 
+* discard inconsistent alignment positions between heads-and-tails alignments
+* discard alignment positions that contain gaps in greater than 90% of the sequences
+* discard hypervariable alignment positions based on a nucleotide-similarity threshold of 0.001
+* discard entire sequences when less than 50% of their nucleotide characters have an overlap score of 0.5
+
+Example code:
+```
+trimal -compareset fileset.txt -out gene.trim_al.fasta -ct 0.5 -gt 0.1 -st 0.001 -resoverlap 0.5 -seqoverlap 0.5
+
+```
+--------
+#### Outlier removal
+[TAPER v.0.1.6](https://github.com/chaoszhang/TAPER) was used to mask regions of individual sequences that were 
+divergent outliers in comparison to the rest of the sequences in the alignment.
+
+Example code:
+```
+correction_multi.jl gene.trim_al.fasta > gene_taper.fasta -c 1 -m N
+```
+--------
+#### Paralog removal
+Paralogs have the potential to confound phylogenetic analyses, so to be cautious, all genes flagged by HybPiper as containing potential paralogs are removed from the dataset.
+
