@@ -18,11 +18,11 @@ Raw reads (.fastq files) were given an initial assessment using [FASTQC](https:/
 Adapter content and low quality reads were trimmed using [Trimmomatic v.0.39](http://www.usadellab.org/cms/?page=trimmomatic) for paired-end reads and the following options:
 
 ```
-
-
 ILLUMINACLIP:<path_to>/TruSeq3-PE-2.fa:2:30:10 LEADING:20 TRAILING:20 SLIDINGWINDOW:5:20 MINLEN:36
 ```
- 
+
+This is the script I used to trim each file consecutively: [trimmer.sh](https://github.com/rosenam/cirsium-2022/blob/main/scripts/trimmer.sh)
+
 ### Gene assembly and sequence extraction
 Genes from Hyb-Seq data were assembled using [HybSeq v.1.3](https://github.com/mossmatters/HybPiper/wiki/HybPiper-Legacy-Wiki), though there is now a newer release ([HybPiper v.2.0](https://github.com/mossmatters/HybPiper)) available.
 
