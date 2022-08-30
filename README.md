@@ -62,7 +62,6 @@ Example code:
 mafft --preservecase --localpair --maxiterate 1000 $gene > $gene.aligned.fasta
 ```
 
---------
 ### Alignment trimming
 Step 1: Perform heads-or-tails alignment
  
@@ -77,7 +76,7 @@ Example code:
 ```
 trimal -compareset fileset.txt -out gene.trim_al.fasta -ct 0.5 -gt 0.1 -st 0.001 -resoverlap 0.5 -seqoverlap 0.5
 ```
---------
+
 ### Removal of divergent regions
 [TAPER v.0.1.6](https://github.com/chaoszhang/TAPER) was used to mask regions of individual sequences that were 
 divergent outliers in comparison to the rest of the sequences in the alignment.
@@ -87,7 +86,7 @@ Example code:
 ```
 correction_multi.jl gene.trim_al.fasta > gene_taper.fasta -c 1 -m N
 ```
---------
+
 ### Paralog removal
 Paralogs have the potential to confound downstream analyses, so to be cautious, all genes flagged by HybPiper as containing potential paralogs were removed from the dataset. This can be done by writing a simple bash script.
 
