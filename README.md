@@ -12,7 +12,7 @@ Create three directories: 01_input, 02_scripts, and 03_ouput
 Create a new conda environment for the project: conda create --name mycustomenv
 
 ## Quality assessment of raw reads
-Raw reads (.fastq files) were given an initial assessment using [FASTQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/). Initial quality control measures should be taken according to these results. 
+Raw reads (.fastq files) were given an initial assessment using [FASTQC v.0.11.9](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/). Initial quality control measures should be taken according to these results. 
 
 ## Raw read trimming
 Adapter content and low quality reads were trimmed using [Trimmomatic v.0.39](http://www.usadellab.org/cms/?page=trimmomatic) for paired-end reads and options set to:
