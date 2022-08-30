@@ -21,3 +21,6 @@ revunp=`echo ${fileR2} | sed 's/R2.fastq.gz/rev_unpaired.fastq/'`
 #run trimmomatic with the correct adapter file and trimming options of your choice
 java -jar trimmomatic-0.39.jar PE $fileR1 $fileR2 $fwdpair $fwdunp $revpair $revunp ILLUMINACLIP:/projects/cirsium/01_input/TruSeq3-PE-2.fa:2:30:10 LEADING:20 TRAILING:20 SLIDINGWINDOW:5:20 MINLEN:36
 done
+
+mkdir ../trimmed
+mv *paired.fastq ../trimmed
