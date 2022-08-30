@@ -121,8 +121,13 @@ The option [T-AUTO] auto-detects how many cores/threads were specified when runn
 
 
 #### Parsimony
-Non-parametric analysis using parsimony was conducted with the command-line version of [TNT v.1.5](http://www.lillo.org.ar/phylogeny/tnt/). Scripts for running analyses can be found [here]:
-* Tree search
-* Jackknife support
+Non-parametric analysis using parsimony was conducted with the command-line version of [TNT v.1.5](http://www.lillo.org.ar/phylogeny/tnt/). Scripts for running tree searches and calculating jackknife support values can be found [here]:
 
 ### Coalescent approach
+Using a coalesscent approach, individual gene trees were calculated, and a species tree is estimated from these results using [ASTRAL v.5.7.8](https://github.com/smirarab/ASTRAL). Individual genes trees were calculated using the non-parametric approach as described above (TNT), but can also be done with a parametric approach. Once each invidivual gene tree had been calculated, they were concatenated into a single file (use the cat command), and analysis was performed with ASTRAL.
+
+Example code:
+
+```
+java -jar astral.5.7.7.jar -i concatenated.tre -o out.astral.tre
+```
