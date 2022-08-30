@@ -89,7 +89,7 @@ correction_multi.jl gene.trim_al.fasta > gene_taper.fasta -c 1 -m N
 ```
 --------
 #### Paralog removal
-Paralogs have the potential to confound downstream analyses, so to be cautious, all genes flagged by HybPiper as containing potential paralogs were removed from the dataset.
+Paralogs have the potential to confound downstream analyses, so to be cautious, all genes flagged by HybPiper as containing potential paralogs were removed from the dataset. This can be done by writing a simple bash script.
 
 Example code:
 
@@ -100,4 +100,7 @@ rm $paralog*
 done < /projects/cirsium/01_input/namelists/paralog_list.txt
 ```
 
-### Phylogenetic Analysis
+### Phylogenetic analysis
+#### Concatenation approach
+
+#### Coalescent approach
