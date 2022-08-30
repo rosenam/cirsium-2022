@@ -109,7 +109,7 @@ Example code (concatenates all fasta files in the current directory into a singl
 AMAS.py concat -f fasta -d dna -i *.fasta
 ```
 #### Maximum likelihood
-A paratemtric analysis using maximum likelihood was conducted with IQTREE v.2.1.3
+A parametric analysis using maximum likelihood was conducted with IQTREE v.2.1.3(https://github.com/Cibiv/IQ-TREE)
 
 Example code:
 
