@@ -63,13 +63,13 @@ mafft --preservecase --localpair --maxiterate 1000 $gene > $gene.aligned.fasta
 ```
 
 ### Alignment trimming
-Step 1: Perform heads-or-tails alignment
+Step 1: Perform [heads-or-tails alignment](https://doi.org/10.1093/molbev/msm060).
  
 Step 2: Use trimAl v.1.4 to 
-* discard inconsistent alignment positions between heads-and-tails alignments
-* discard alignment positions that contain gaps in greater than 90% of the sequences
-* discard hypervariable alignment positions based on a nucleotide-similarity threshold of 0.001
-* discard entire sequences when less than 50% of their nucleotide characters have an overlap score of 0.5
+* discard inconsistent alignment positions between heads-and-tails alignments (given in fileset.txt, see code below)
+* discard alignment positions that contain gaps in greater than 90% of the sequences (-gt 0.1)
+* discard hypervariable alignment positions based on a nucleotide-similarity threshold of 0.001 (-st 0.001)
+* discard entire sequences when less than 50% of their nucleotide characters have an overlap score of 0.5 (-resoverlap 0.5 -seqoverlap 0.5)
 
 Example code:
 
