@@ -101,7 +101,7 @@ done < /projects/cirsium/01_input/namelists/paralog_list.txt
 
 ## Phylogenetic analysis
 ### Concatenation approach
-Using the concatenation approach, all sequence alignment files were concatenated into a single super-matrix using [AMAS v.1.0](https://github.com/marekborowiec/AMAS). Phylogenetic trees are then calculated from this single super-matrix.
+Using a concatenation approach, all sequence alignment files were concatenated into a single super-matrix using [AMAS v.1.0](https://github.com/marekborowiec/AMAS). Phylogenetic trees were then calculated from this single super-matrix.
 
 Example code (concatenates all fasta files in the current directory into a single super-matrix alignment file):
 
@@ -109,7 +109,7 @@ Example code (concatenates all fasta files in the current directory into a singl
 AMAS.py concat -f fasta -d dna -i *.fasta
 ```
 #### Maximum likelihood
-A parametric analysis using maximum likelihood was conducted with IQTREE v.2.1.3(https://github.com/Cibiv/IQ-TREE)
+Parametric analysis using maximum likelihood was conducted with [IQTREE v.2.1.3](https://github.com/Cibiv/IQ-TREE)
 
 Example code:
 
@@ -117,8 +117,12 @@ Example code:
 iqtree -T AUTO -s concatenated.fasta -m MFP -B 1000
 ```
 
+The option [T-AUTO] auto-detects how many cores/threads were specified when running the job on an HPC cluster.
+
 
 #### Parsimony
-A non-parametric analysis using parsimony was conducted with TNT v.1.5
+Non-parametric analysis using parsimony was conducted with the command-line version of [TNT v.1.5](http://www.lillo.org.ar/phylogeny/tnt/). Scripts for running analyses can be found [here]:
+* Tree search
+* Jackknife support
 
 ### Coalescent approach
