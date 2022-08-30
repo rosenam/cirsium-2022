@@ -33,11 +33,15 @@ For more information, see [HybPiper.](https://github.com/mossmatters/HybPiper)
 
 --------
 
-After assembly, we should clean up the output, gather some statistics, and extract the assembled sequences. The user can extract the exon sequences, intron sequences, or supercontigs containing both exons and introns. 
+After assembly, run the HybPiper function intronerate.py to create assemblies for the supercontig (gene sequence containing exons and introns) and introns. This step can be skipped if introns are not of interest. 
 
-```
+Finally, clean up the output, gather statistics on the assemblies, and extract the assembled sequences. The user can extract the exon sequences, intron sequences, or supercontigs containing both exons and introns. 
 
-```
+--------
+
+This is the script I used to tie together all of these HybPiper functions: [full_pipeline.sh]
+
+If all trimmed reads are placed in a single directory, this script will perform gene assembly and clean up for each specimen consecutively, and then extract sequence data and assembly statistics for all specimens.
 
 ### Multiple Sequence Alignment (MSA)
 
