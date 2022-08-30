@@ -24,7 +24,7 @@ Adapter content and low quality reads were trimmed using [Trimmomatic v.0.39](ht
 Example code:
 
 ```
-java -jar trimmomatic-0.39.jar PE $fileR1 $fileR2 $fileR1.pair.fastq $fileR1.unp.fastq $fileR2.pair.fastq $fileR2.unp.fastq ILLUMINACLIP:/projects/cirsium/01_input/TruSeq3-PE-2.fa:2:30:10 LEADING:20 TRAILING:20 SLIDINGWINDOW:5:20 MINLEN:36
+java -jar trimmomatic-0.39.jar PE fileR1 fileR2 fileR1.pair.fastq fileR1.unp.fastq fileR2.pair.fastq fileR2.unp.fastq ILLUMINACLIP:/projects/cirsium/01_input/TruSeq3-PE-2.fa:2:30:10 LEADING:20 TRAILING:20 SLIDINGWINDOW:5:20 MINLEN:36
 ```
 
 This is the script I used to trim each file consecutively and place all trimmed reads into a single directory: [trimmer.sh](https://github.com/rosenam/cirsium-2022/blob/main/scripts/trimmer.sh)
