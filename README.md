@@ -65,7 +65,7 @@ mafft --preservecase --localpair --maxiterate 1000 $gene > $gene.aligned.fasta
 --------
 #### Alignment trimming
 Step 1: Perform heads-or-tails alignment
-
+ 
 Step 2: Use trimAl v.1.4 to 
 * discard inconsistent alignment positions between heads-and-tails alignments
 * discard alignment positions that contain gaps in greater than 90% of the sequences
