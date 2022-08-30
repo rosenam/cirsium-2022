@@ -101,5 +101,24 @@ done < /projects/cirsium/01_input/namelists/paralog_list.txt
 
 ## Phylogenetic analysis
 ### Concatenation approach
+Using the concatenation approach, all sequence alignment files were concatenated into a single super-matrix using [AMAS v.1.0](https://github.com/marekborowiec/AMAS). Phylogenetic trees are then calculated from this single super-matrix.
+
+Example code (concatenates all fasta files in the current directory into a single super-matrix alignment file):
+
+```
+AMAS.py concat -f fasta -d dna -i *.fasta
+```
+#### Maximum likelihood
+A paratemtric analysis using maximum likelihood was conducted with IQTREE v.2.1.3
+
+Example code:
+
+```
+iqtree -T AUTO -s concatenated.fasta -m MFP -B 1000
+```
+
+
+#### Parsimony
+A non-parametric analysis using parsimony was conducted with TNT v.1.5
 
 ### Coalescent approach
