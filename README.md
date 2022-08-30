@@ -32,9 +32,12 @@ This is the script I used to trim each file consecutively and place all trimmed 
 ### Gene assembly and sequence extraction
 Genes from Hyb-Seq data were assembled using [HybSeq v.1.3](https://github.com/mossmatters/HybPiper/wiki/HybPiper-Legacy-Wiki), though there is now a newer release ([HybPiper v.2.0](https://github.com/mossmatters/HybPiper)) available.
 
-HybPiper requires trimmed fastq files, a target file that contains the complete sequences (targets) to be recovered, and a name list for the specimens. The original target file used in the manuscript can be found [here](https://github.com/Smithsonian/Compositae-COS-workflow/blob/master/COS_sunf_lett_saff_all.fasta):
+HybPiper requires trimmed fastq files, a target file that contains the complete sequences (targets) to be recovered, and a name list for the specimens. The original target file used in the manuscript can be found [here](https://github.com/Smithsonian/Compositae-COS-workflow/blob/master/COS_sunf_lett_saff_all.fasta).
+
 However, the sequence names had to be rearranged to work appopriately with HybPiper, which was done using this simple Python script: 
+
 The target file with correctly arranged sequence names can be found [here].
+
 For more information, see [HybPiper.](https://github.com/mossmatters/HybPiper)
 
 --------
