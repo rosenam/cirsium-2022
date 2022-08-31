@@ -42,9 +42,9 @@ For more information, see [HybPiper.](https://github.com/mossmatters/HybPiper)
 
 --------
 
-After assembly, run the HybPiper function intronerate.py to create assemblies for the supercontig (gene sequence containing exons and introns) and introns. This step can be skipped if introns are not of interest. 
+After assembly, the HybPiper function intronerate.py was run to create assemblies for the supercontig (gene sequence containing exons and introns) and introns. This step can be skipped if introns are not of interest. 
 
-Finally, clean up the output, gather statistics on the assemblies, compile paralog warnings, and extract the assembled sequences. The user can extract the exon sequences, intron sequences, or supercontigs containing both exons and introns. 
+Finally, I cleaned up the output files, gathered statistics on the assemblies, compiled paralog warnings, and extracted the assembled sequences. The user can extract the exon sequences, intron sequences, or supercontigs containing both exons and introns. 
 
 --------
 
@@ -124,10 +124,12 @@ The option [T-AUTO] auto-detects how many cores/threads were specified when runn
 Non-parametric analysis using parsimony was conducted with the command-line version of [TNT v.1.5](http://www.lillo.org.ar/phylogeny/tnt/). Scripts for running tree searches and calculating jackknife support values can be found [here]:
 
 ### Coalescent approach
-Using a coalesscent approach, individual gene trees were calculated, and a species tree is estimated from these results using [ASTRAL v.5.7.8](https://github.com/smirarab/ASTRAL). Individual genes trees were calculated using the non-parametric approach as described above (TNT), but can also be done with a parametric approach. Once each invidivual gene tree had been calculated, they were concatenated into a single file (use the cat command), and analysis was performed with ASTRAL.
+Using a coalescent approach, individual gene trees were calculated, and a species tree estimated from these results using [ASTRAL v.5.7.8](https://github.com/smirarab/ASTRAL). Individual genes trees were calculated using the non-parametric approach as described above (TNT), but can also be done with a parametric approach. Once each invidivual gene tree had been calculated, they were concatenated into a single file (use the cat command), and analysis was performed with ASTRAL.
 
 Example code:
 
 ```
 java -jar astral.5.7.7.jar -i concatenated.tre -o out.astral.tre
 ```
+## Variant calling
+I followed the following tutorial to call variants and create a VCF file for use in a population genomics analysis: (https://speciationgenomics.github.io/)
