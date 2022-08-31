@@ -36,7 +36,7 @@ HybPiper requires trimmed fastq files, a target file that contains the complete 
 
 However, the sequence names had to be rearranged to work appopriately with HybPiper, which was done using this simple Python script: 
 
-The target file with correctly arranged sequence names can be found [here].
+The target file with correctly arranged sequence names can be found [here](https://github.com/rosenam/cirsium-2022/blob/main/COS_sunf_lett_saff_all.fasta).
 
 For more information, see [HybPiper.](https://github.com/mossmatters/HybPiper)
 
