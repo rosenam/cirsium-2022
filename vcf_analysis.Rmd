@@ -1,0 +1,186 @@
+---
+title: "VCF Analysis"
+author: "Austin Rosen"
+date: "8/25/21"
+output: pdf_document
+header-includes:
+  - \usepackage{xcolor}
+  - \usepackage{framed}
+---
+
+\colorlet{shadecolor}{gray!10}
+```{r setup, include=FALSE}
+library(knitr)
+#install the tidyverse library (do this once)
+#install.packages("tidyverse")
+library(tidyverse)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, fig.width = 5, fig.height = 3, tidy = TRUE)
+```
+\newcommand{\hstart}{ \colorlet{shadecolor}{orange!20}
+\begin{shaded} }
+\newcommand{\hstop}{  \end{shaded} \colorlet{shadecolor}{gray!10}}
+
+\hstart
+
+Variants were called using the samtools mpileup tool on our BAM files produced by HybPiper. This takes all reads at a given position and calls variants against the reference genome from the reads covering that position for all individuals. Using the known gene sequences for each loci as the reference genome, 899036 variants were obtained. 
+
+
+
+Chances are many of them are not useful for our analysis because they occur in too few individuals, their minor allele frequency is too low, they are covered by insufficient depth or are low quality sites. Lets's investigate our vcf (Variant Call Format) dataset. 
+
+\hstop
+
+
+#1. Check Variant Quality
+
+```{r, echo=F, message=F, warning=F}
+#extract PHRED quality scores
+var_qual <- read_delim("./cirsium.lqual", delim = "\t",
+           col_names = c("chr", "pos", "qual"), skip = 1)
+
+#build plot of quality scores
+a <- ggplot(var_qual, aes(qual)) + geom_density(fill = "dodgerblue1", colour = "black", alpha = 0.3)
+
+#plot
+a + theme_light() + xlim(0, 50 ) + ggtitle("Variant Quality")
+```
+
+\hstart
+
+Site quality scores are fairly low. Phred scores of 30 represents 99.9% accuracy, 20 represent 99% accuracy, and 10 represents 90% accuracy of the SNP call.
+
+\hstop 
+
+#2. Check variant mean depth
+
+```{r, echo=F, message=F, warning=F}
+#extract depth data
+var_depth <- read_delim("./cirsium.ldepth.mean", delim = "\t",
+           col_names = c("chr", "pos", "mean_depth", "var_depth"), skip
+           = 1)
+
+#build plot of site depth
+a <- ggplot(var_depth, aes(mean_depth)) + geom_density(fill = "dodgerblue1", colour = "black", alpha = 0.3)
+
+#view close up
+a + theme_light() + xlim(0, 4) + ggtitle("Variant mean depth")
+```
+
+\hstart
+
+Mean of the read depth across all individuals represents the number of reads that have mapped to each position- it is for both alleles at a position and is not partitioned between the reference and the alternative.
+
+
+Most of our variants sites clearly have very low coverage ( < 2x). A minimum threshold of 10x is often recommended. 
+
+\hstop
+
+#3. Variant missingness
+
+```{r, echo=F, message=F, warning=F}
+#extract data
+var_miss <- read_delim("./cirsium.lmiss", delim = "\t",
+                       col_names = c("chr", "pos", "nchr", "nfiltered", 
+                      "nmiss", "fmiss"), skip = 1)
+                       
+# build plot and visualize
+a <- ggplot(var_miss, aes(fmiss)) + geom_density(fill = "dodgerblue1", colour = "black", alpha = 0.3)
+a + theme_light() + ggtitle("Variant missingness")
+
+```
+
+\hstart
+
+This is a measure of how many individuals lack a genotype at a call site.
+
+
+This figure shows that there are many sites in which there is a call for almost every individual, but also many sites in which there are calls for only a very few individuals. Typically missingness of 75-95% is used.
+
+\hstop
+
+#4. Minor allele frequency
+
+```{r, echo=F, message=F, warning=F}
+#extract data
+var_freq <- read_delim("./cirsium.frq", delim = "\t",
+                       col_names = c("chr", "pos", "nalleles", "nchr", "a1", "a2"), skip = 1)
+
+# find minor allele frequency
+var_freq$maf <- var_freq %>% select(a1, a2) %>% apply(1, function(z) min(z))
+
+#plot
+a <- ggplot(var_freq, aes(maf)) + geom_density(fill = "dodgerblue1", colour = "black", alpha = 0.3)
+a + theme_light() + ggtitle("Minor allele frequency") + xlim(0,0.2)
+
+#summarize
+summary(var_freq$maf)
+
+```
+
+\hstart
+
+A large number of variants have low frequency alleles, which often result in uninformative loci.
+
+\hstop
+
+#5. Mean depth per individual
+
+```{r, echo=F, message=F, warning=F}
+#extract data
+ind_depth <- read_delim("./cirsium.idepth", delim = "\t",
+                        col_names = c("ind", "nsites", "depth"), skip = 1)
+
+#build plot and visualize
+a <- ggplot(ind_depth, aes(depth)) + geom_histogram(fill = "dodgerblue1", colour = "black", alpha = 0.3)
+a + theme_light()
+```
+
+\hstart
+
+This figure shows that most individuals were sequenced to a fairly acceptable depth, aside from perhaps 1 individual (probably individual #175 which didn't find any relevant sequences during HybPiper assembly).
+
+\hstop
+
+
+#6. Proportion of missing data per individual
+
+```{r, echo=F, message=F, warning=F}
+# extract data
+ind_miss  <- read_delim("./cirsium.imiss", delim = "\t",
+                        col_names = c("ind", "ndata", "nfiltered", "nmiss", "fmiss"), skip = 1)
+
+# build plot and visualize
+a <- ggplot(ind_miss, aes(fmiss)) + geom_histogram(fill = "dodgerblue1", colour = "black", alpha = 0.3)
+a + theme_light()
+
+#summarize
+summary(ind_miss$fmiss)
+```
+
+\hstart
+
+The proportion of missing data per individual is generally quite high, with a mean of 0.44 (44% missing data).
+
+\hstop
+
+
+#7. Heterozygosity and inbreeding coefficient per individual
+
+```{r, echo=F, message=F, warning=F}
+# extract data
+ind_het <- read_delim("./cirsium.het", delim = "\t",
+           col_names = c("ind","ho", "he", "nsites", "f"), skip = 1)
+
+# build plot and visualize
+a <- ggplot(ind_het, aes(f)) + geom_histogram(fill = "dodgerblue1", colour = "black", alpha = 0.3)
+a + theme_light()
+
+#summarize
+summary(ind_het$f)
+```
+
+\hstart
+
+Strongly negative values of Inbreeding Coefficient (F) could mean there are too many heterozygotes and suggest a site with bad mapping/high levels of allelic dropout. A value of 0 suggests the site is in Hardy-Weinberg Equilibrium. Highly positive F values are indicative of DNA contamination.
+
+\hstop

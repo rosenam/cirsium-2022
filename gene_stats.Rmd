@@ -1,0 +1,102 @@
+---
+title: "cirsium_stats"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(ggplot2)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# read in the data
+cirsium <- read_csv("~/R Studio/cirsium_stats.csv")
+
+cirsium_v2 <- read_csv("~/R Studio/cirsium_stats_v2.csv")
+
+```
+
+```{r}
+# organize the data
+
+#table with each gene, paralog status, avg # contigs, # of samples that recovered the gene
+
+sum_stats_1 <- summarise(group_by(cirsium, gene, paralog),
+          n_samples=n(),
+          avg_contigs = sum(contigs)/n())
+
+sum_stats_1
+sum(sum_stats_1$avg_contigs <= 1)
+sum(sum_stats_1$avg_contigs > 9)
+```
+
+```{r}
+# how many paralogous genes (flagged by HybPiper) and how many not
+total_paralogs <- length(which(sum_stats_1$paralog == "Yes"))
+total_no_paralogs <- length(which(sum_stats_1$paralog == "No"))
+```
+
+```{r}
+# table with avg # of contigs recovered for each gene by paralog status (flagged by HybPiper)
+
+sum_stats_2 <- summarise(group_by(sum_stats_1, paralog),
+                        n = n(),
+                        avg = sum(avg_contigs)/n())
+
+sum_stats_2
+```
+
+```{r}
+# table of gene by sample with number of contigs, avg length/cov/ident per gene by sample
+sum_stats_3 <- summarise(group_by(cirsium_v2, gene, paralog, sample),
+                         contigs = n(),
+                         min_length = min(bp_length),
+                         avg_length = sum(bp_length)/contigs,
+                         max_length = max(bp_length),
+                         length_range = max_length - min_length,
+                         min_cov = min(coverage),
+                         avg_cov = sum(coverage)/contigs,
+                         max_cov = max(coverage),
+                         cov_range = max_cov - min_cov,
+                         min_identity = min(identity),
+                         avg_identity = sum(identity)/contigs,
+                         max_identity = max(identity),
+                         identity_range = max_identity - min_identity)
+
+sum_stats_3
+```
+
+```{r}
+#another table with stats by gene (and not grouped by sample)
+sum_stats_4 <- summarise(group_by(cirsium_v2, gene, paralog),
+                         total_contigs = n(),
+                         min_length = min(bp_length),
+                         avg_length = sum(bp_length)/total_contigs,
+                         max_length = max(bp_length),
+                         length_range = max_length - min_length,
+                         min_cov = min(coverage),
+                         avg_cov = sum(coverage)/total_contigs,
+                         max_cov = max(coverage),
+                         cov_range = max_cov - min_cov,
+                         min_identity = min(identity),
+                         avg_identity = sum(identity)/total_contigs,
+                         max_identity = max(identity),
+                         identity_range = max_identity - min_identity)
+
+sum_stats_4
+```
+
+```{r}
+# create a mega dataframe combining sum_stats_4 and sum_stats_1
+
+full_stats <- merge(sum_stats_1, sum_stats_4, by=c("gene","paralog"))
+
+full_stats
+```
+
+
+```{r}
+# plot the average number of contigs recovered per gene
+ggplot(data=sum_stats_1, aes(gene, avg_contigs)) + geom_bar(stat="identity") +    theme(axis.ticks.x = element_blank(), axis.text.x = element_blank())
+```
