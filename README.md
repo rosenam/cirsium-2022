@@ -2,7 +2,7 @@
 Contains a description of the methods and various code from the manuscript "[Paralogy or reality? Exploring gene assembly errors in a target enrichment dataset.](https://github.com/rosenam/cirsium-2022/blob/main/rosen_manuscript.pdf)"
 
 ### Prerequisites
-[FASTQC v.0.11.9](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) \n
+[FASTQC v.0.11.9](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)  
 [Trimmomatic v.0.39](http://www.usadellab.org/cms/?page=trimmomatic)
 [HybPiper v.1.3](https://github.com/mossmatters/HybPiper/wiki/HybPiper-Legacy-Wiki) and all associated dependencies 
 [MAFFT v.7.48](https://mafft.cbrc.jp/alignment/software/) 
