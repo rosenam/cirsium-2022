@@ -48,7 +48,7 @@ Finally, clean up the output, gather statistics on the assemblies, compile paral
 
 --------
 
-This is the script I used to tie together all of these HybPiper functions: [full_pipeline.sh]
+This is the script I used to tie together all of these HybPiper functions: [hybpiper_full_pipeline.sh](https://github.com/rosenam/cirsium-2022/blob/main/scripts/hybpiper_full_pipeline.sh).
 
 If all trimmed reads are placed in a single directory, this script will perform gene assembly and clean up for each specimen consecutively, and then extract sequence data, paralog warnings, and assembly statistics for all specimens.
 
