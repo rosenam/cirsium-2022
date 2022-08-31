@@ -2,7 +2,16 @@
 Contains a description of the methods and various code from the manuscript "[Paralogy or reality? Exploring gene assembly errors in a target enrichment dataset.](https://github.com/rosenam/cirsium-2022/blob/main/rosen_manuscript.pdf)"
 
 ### Prerequisites
+[FASTQC v.0.11.9](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+[Trimmomatic v.0.39](http://www.usadellab.org/cms/?page=trimmomatic)
 [HybPiper v.1.3](https://github.com/mossmatters/HybPiper/wiki/HybPiper-Legacy-Wiki) and all associated dependencies.
+[MAFFT v.7.48](https://mafft.cbrc.jp/alignment/software/)
+[trimAl v.1.4](https://github.com/inab/trimal)
+[TAPER v.0.1.6](https://github.com/chaoszhang/TAPER)
+[AMAS v.1.0](https://github.com/marekborowiec/AMAS)
+[IQTREE v.2.1.3](https://github.com/Cibiv/IQ-TREE)
+[TNT v.1.5](http://www.lillo.org.ar/phylogeny/tnt/)
+[ASTRAL v.5.7.8](https://github.com/smirarab/ASTRAL)
 
 # Pipeline
 
@@ -65,7 +74,7 @@ mafft --preservecase --localpair --maxiterate 1000 $gene > $gene.aligned.fasta
 ### Alignment trimming
 Step 1: Perform [heads-or-tails alignment](https://doi.org/10.1093/molbev/msm060).
  
-Step 2: Use trimAl v.1.4 to 
+Step 2: Use [trimAl v.1.4](https://github.com/inab/trimal) to 
 * discard inconsistent alignment positions between heads-and-tails alignments (given in fileset.txt, see code below)
 * discard alignment positions that contain gaps in greater than 90% of the sequences (-gt 0.1)
 * discard hypervariable alignment positions based on a nucleotide-similarity threshold of 0.001 (-st 0.001)
@@ -132,6 +141,7 @@ Example code:
 java -jar astral.5.7.7.jar -i concatenated.tre -o out.astral.tre
 ```
 ## Population genomics analysis
+The following results are not found in the manuscript, but were conducted out of curiosity about the dataset.
 ### Variant calling
 I followed this tutorial to call variants and create a VCF file for population genomics analysis: (https://speciationgenomics.github.io/)
 An exploration of the variant based statistics produced from my dataset using R can be found here: [R Markdown](https://github.com/rosenam/cirsium-2022/blob/main/vcf_analysis.Rmd) or [PDF](https://github.com/rosenam/cirsium-2022/blob/main/vcf_analysis.pdf).
