@@ -3,14 +3,23 @@ Contains a description of the methods and various code from the manuscript "[Par
 
 ### Prerequisites
 [FASTQC v.0.11.9](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+
 [Trimmomatic v.0.39](http://www.usadellab.org/cms/?page=trimmomatic)
+
 [HybPiper v.1.3](https://github.com/mossmatters/HybPiper/wiki/HybPiper-Legacy-Wiki) and all associated dependencies.
+
 [MAFFT v.7.48](https://mafft.cbrc.jp/alignment/software/)
+
 [trimAl v.1.4](https://github.com/inab/trimal)
+
 [TAPER v.0.1.6](https://github.com/chaoszhang/TAPER)
+
 [AMAS v.1.0](https://github.com/marekborowiec/AMAS)
+
 [IQTREE v.2.1.3](https://github.com/Cibiv/IQ-TREE)
+
 [TNT v.1.5](http://www.lillo.org.ar/phylogeny/tnt/)
+
 [ASTRAL v.5.7.8](https://github.com/smirarab/ASTRAL)
 
 # Pipeline
