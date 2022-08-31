@@ -132,4 +132,5 @@ Example code:
 java -jar astral.5.7.7.jar -i concatenated.tre -o out.astral.tre
 ```
 ## Variant calling
-I followed the following tutorial to call variants and create a VCF file for use in a population genomics analysis: (https://speciationgenomics.github.io/)
+I followed this tutorial to call variants and create a VCF file for population genomics analysis: (https://speciationgenomics.github.io/)
+An exploration of the variant based statistics produced from my dataset using R can be found here: [R Markdown](https://github.com/rosenam/cirsium-2022/blob/main/vcf_analysis.Rmd) or [PDF](https://github.com/rosenam/cirsium-2022/blob/main/vcf_analysis.pdf).
