@@ -1,20 +1,11 @@
 ---
-
-
-
-
-
-
-
-
-
-
 title: "admixture plotting"
 output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
 ```
 
 ## Plotting for K=2
@@ -27,12 +18,12 @@ mergedAdmWithPopGroups = cbind(popGroups, tbl)
 
 ordered_by_reg = mergedAdmWithPopGroups[order(mergedAdmWithPopGroups$Region),]
 
-barplot(t(as.matrix(subset(ordered_by_reg, select=V1:V2))), col=rainbow(2), border=NA, names.arg=c(ordered_by_reg$Region), cex.names=0.7, las=2, main="K=2")
+barplot(t(as.matrix(subset(ordered_by_reg, select=V1:V2))), col=rainbow(2), border=NA, names.arg=c(ordered_by_reg$Region), cex.names=0.7, las=2, main="K=2, organized by region")
 
 ordered_by_sim = mergedAdmWithPopGroups[order(mergedAdmWithPopGroups$V1),]
 
 
-barplot(t(as.matrix(subset(ordered_by_sim, select=V1:V2))), col=rainbow(2), border=NA, names.arg=c(ordered_by_sim$Region), cex.names=0.3, las=2, main="K=2")
+barplot(t(as.matrix(subset(ordered_by_sim, select=V1:V2))), col=rainbow(2), border=NA, names.arg=c(ordered_by_sim$Region), cex.names=0.3, las=2, main="K=2, organized by population group")
 
 ```
 
@@ -46,12 +37,12 @@ mergedAdmWithPopGroups = cbind(popGroups, tbl)
 
 ordered_by_reg = mergedAdmWithPopGroups[order(mergedAdmWithPopGroups$Region),]
 
-barplot(t(as.matrix(subset(ordered_by_reg, select=V1:V3))), col=rainbow(3), border=NA, names.arg=c(ordered_by_reg$Region), cex.names=0.7, las=2, main="K=3")
+barplot(t(as.matrix(subset(ordered_by_reg, select=V1:V3))), col=rainbow(3), border=NA, names.arg=c(ordered_by_reg$Region), cex.names=0.7, las=2, main="K=3, organized by region")
 
 ordered_by_sim = mergedAdmWithPopGroups[order(mergedAdmWithPopGroups$V1),]
 
 
-barplot(t(as.matrix(subset(ordered_by_sim, select=V1:V3))), col=rainbow(3), border=NA, names.arg=c(ordered_by_sim$Region), cex.names=0.3, las=2, main="K=3")
+barplot(t(as.matrix(subset(ordered_by_sim, select=V1:V3))), col=rainbow(3), border=NA, names.arg=c(ordered_by_sim$Region), cex.names=0.3, las=2, main="K=3, organized by population group")
 ```
 ## Plotting for K=4
 ```{r}
@@ -63,12 +54,11 @@ mergedAdmWithPopGroups = cbind(popGroups, tbl)
 
 ordered_by_reg = mergedAdmWithPopGroups[order(mergedAdmWithPopGroups$Region),]
 
-barplot(t(as.matrix(subset(ordered_by_reg, select=V1:V4))), col=rainbow(4), border=NA, names.arg=c(ordered_by_reg$Region), cex.names=0.7, las=2, main="K=4")
+barplot(t(as.matrix(subset(ordered_by_reg, select=V1:V4))), col=rainbow(4), border=NA, names.arg=c(ordered_by_reg$Region), cex.names=0.7, las=2, main="K=4, organized by region")
 
 ordered_by_sim = mergedAdmWithPopGroups[order(mergedAdmWithPopGroups$V1),]
 
-
-barplot(t(as.matrix(subset(ordered_by_sim, select=V1:V4))), col=rainbow(4), border=NA, names.arg=c(ordered_by_sim$Region), cex.names=0.3, las=2, main="K=4")
+barplot(t(as.matrix(subset(ordered_by_sim, select=V1:V4))), col=rainbow(4), border=NA, names.arg=c(ordered_by_sim$Region), cex.names=0.3, las=2, main="K=4, organized by population group")
 ```
 
 ## Plotting for K=5
@@ -81,10 +71,10 @@ mergedAdmWithPopGroups = cbind(popGroups, tbl)
 
 ordered_by_reg = mergedAdmWithPopGroups[order(mergedAdmWithPopGroups$Region),]
 
-barplot(t(as.matrix(subset(ordered_by_reg, select=V1:V5))), col=rainbow(5), border=NA, names.arg=c(ordered_by_reg$Region), cex.names=0.7, las=2, main="K=5")
+barplot(t(as.matrix(subset(ordered_by_reg, select=V1:V5))), col=rainbow(5), border=NA, names.arg=c(ordered_by_reg$Region), cex.names=0.7, las=2, main="K=5, organized by region")
 
-#ordered_by_sim <- read_csv("~/Adm_5.csv")
+ordered_by_sim = mergedAdmWithPopGroups[order(mergedAdmWithPopGroups$V1),]
 
-#barplot(t(as.matrix(subset(ordered_by_sim, select=V1:V5))), col=rainbow(5), border=NA, names.arg=c(ordered_by_sim$Region), cex.names=0.5, las=2)
+barplot(t(as.matrix(subset(ordered_by_sim, select=V1:V5))), col=rainbow(4), border=NA, names.arg=c(ordered_by_sim$Region), cex.names=0.3, las=2, main="K=5, organized by population group")
 
 ```
