@@ -138,4 +138,5 @@ An exploration of the variant based statistics produced from my dataset using R 
 
 ### Population structure detection
 I searched for genomic population structure with the unsupervised clustering algorithm [Admixture](https://dalexander.github.io/admixture/)
-The admixture plots created for K=2 through K=5 can be viewed in this [R Markdown document](https://github.com/rosenam/cirsium-2022/blob/main/admixture_plotting.rmd). 
+
+The admixture plots created for my dataset for K=2 through K=5 can be viewed in this [PDF](https://github.com/rosenam/cirsium-2022/blob/main/admixture_plotting.pdf) document, and the relevant code can be viewed in this [R Markdown](https://github.com/rosenam/cirsium-2022/blob/main/admixture_plotting.rmd) document.
