@@ -15,11 +15,6 @@ Contains a description of the methods and various code from the manuscript "[Par
 
 # Pipeline
 
-## Project setup
-Create three directories: 01_input, 02_scripts, and 03_ouput
-
-Create a new conda environment for the project: conda create --name mycustomenv
-
 ## Quality assessment of raw reads
 Raw reads (.fastq files) were given an initial assessment using [FASTQC v.0.11.9](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/). Initial quality control measures should be taken according to these results. 
 
