@@ -38,7 +38,7 @@ Genes from Hyb-Seq data were assembled using [HybSeq v.1.3](https://github.com/m
 
 HybPiper requires trimmed fastq files, a target file that contains the complete sequences (targets) to be recovered, and a name list for the specimens. The original target file used in the manuscript can be found [here](https://github.com/Smithsonian/Compositae-COS-workflow/blob/master/COS_sunf_lett_saff_all.fasta).
 
-However, the sequence names had to be rearranged to work appopriately with HybPiper, which was done using this simple Python script: 
+However, the sequence names had to be rearranged to work appopriately with HybPiper, which was done using this simple Python script: [correct_formatting.py](https://github.com/rosenam/cirsium-2022/blob/main/scripts/correct_formatting.py)
 
 The target file with correctly arranged sequence names can be found [here](https://github.com/rosenam/cirsium-2022/blob/main/COS_sunf_lett_saff_all.fasta).
 
